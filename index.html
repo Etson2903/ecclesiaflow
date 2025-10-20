@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECCLESIAFLOW - Assembleia de Deus Vargeão</title>
+    <style>
+        /* Design Mobile-First otimizado para tablet e celular */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #212529;
+            --border-radius: 0.75rem;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 1rem 0;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2, .card h3, .card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: #fff;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            min-height: 48px; /* Tamanho mínimo para touch */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-full {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #1e7e34;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #bd2130;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        /* Navegação por abas otimizada para mobile */
+        .nav-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-link {
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--secondary-color);
+            border: none;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-link.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .nav-link:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        /* Lista responsiva */
+        .list-group {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-group-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #fff;
+            margin-bottom: 0.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item-content {
+            flex: 1;
+        }
+
+        .list-item-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .list-item-actions .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Alertas */
+        .alert {
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-info {
+            background-color: #cce7ff;
+            color: #004085;
+            border: 1px solid #b3d7ff;
+        }
+
+        /* Campos de checkbox para mobile */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked + label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 3rem auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade para tablets */
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-tabs {
+                justify-content: center;
+            }
+
+            .nav-link {
+                min-width: 150px;
+            }
+
+            .list-group-item {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .list-item-actions {
+                flex-shrink: 0;
+            }
+        }
+
+        /* Melhorias para telas grandes */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+                padding: 2rem;
+            }
+
+            .dashboard-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        /* Estados de foco melhorados para acessibilidade */
+        .btn:focus, .nav-link:focus {
+            outline: 3px solid rgba(0, 123, 255, 0.3);
+            outline-offset: 2px;
+        }
+
+        /* Melhorias para modo escuro (se o dispositivo suportar) */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-color: #1a1a1a;
+                --card-background: #2d2d2d;
+                --text-color: #ffffff;
+            }
+
+            .form-group input, .form-group select, .form-group textarea {
+                background-color: #3d3d3d;
+                border-color: #555;
+                color: white;
+            }
+
+            .checkbox-item {
+                background-color: #3d3d3d;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="app-title">ECCLESIAFLOW</h1>
+        <p class="subtitle">Assembleia de Deus - Vargeão, SC</p>
+    </header>
+
+    <div class="container content" id="app-content">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        // =================================================================================
+        // ECCLESIAFLOW - SISTEMA SIMPLIFICADO PARA ASSEMBLEIA DE DEUS VARGEÃO
+        // =================================================================================
+        
+        const DB_KEY = 'ECCLESIAFLOW_VARGEAO_DB';
+        let currentState = {
+            view: 'login', // 'login', 'dashboard'
+            userRole: null // 'dirigente', 'portaria', 'midia', 'intercessao'
+        };
+
+        // Inicialização do banco de dados local
+        function initializeDB() {
+            let db = localStorage.getItem(DB_KEY);
+            if (!db) {
+                const initialDB = {
+                    users: [
+                        { username: 'etson', password: '123', role: 'dirigente', name: 'Pastor Etson' },
+                        { username: 'portaria', password: '123', role: 'portaria', name: 'Portaria' },
+                        { username: 'midia', password: '123', role: 'midia', name: 'Equipe Mídia' },
+                        { username: 'intercessao', password: '123', role: 'intercessao', name: 'Intercessão' }
+                    ],
+                    contacts: [
+                        { category: 'dirigente', name: 'Pastor Etson', phone: '5549999999999' },
+                        { category: 'midia', name: 'Equipe Mídia', phone: '5549888888888' },
+                        { category: 'intercessao', name: 'Equipe Intercessão', phone: '5549777777777' }
+                    ],
+                    visitors: [],
+                    praises: [],
+                    prayers: [],
+                    avisos: [
+                        {
+                            id: 1,
+                            tipo: 'fixo',
+                            titulo: 'Culto de Oração',
+                            descricao: 'Todas as terças-feiras às 19h30',
+                            dias_semana: ['terca'],
+                            horario: '19:30h',
+                            timestamp: new Date().toISOString()
+                        },
+                        {
+                            id: 2,
+                            tipo: 'fixo',
+                            titulo: 'Culto de Doutrina',
+                            descricao: 'Todas as quintas-feiras às 19h30',
+                            dias_semana: ['quinta'],
+                            horario: '19:30h',
+                            timestamp: new Date().toISOString()
+                        }
+                    ],
+                    auto_messages: {
+                        post_service: { 
+                            template: 'Olá [NOME], que bom te ter conosco hoje na Assembleia de Deus de Vargeão! Que Deus te abençoe ricamente. 🙏', 
+                            tags: 'visitante' 
+                        },
+                        follow_up_1: { 
+                            template: 'Paz do Senhor [NOME]! Como você está? Gostaríamos de saber como foi sua experiência em nosso culto. 😊', 
+                            tags: 'visitante' 
+                        }
+                    }
+                };
+                localStorage.setItem(DB_KEY, JSON.stringify(initialDB));
+                return initialDB;
+            }
+            return JSON.parse(db);
+        }
+
+        function saveDB(db) {
+            localStorage.setItem(DB_KEY, JSON.stringify(db));
+        }
+
+        function getDB() {
+            return initializeDB();
+        }
+
+        // =================================================================================
+        // ROTEAMENTO E RENDERIZAÇÃO
+        // =================================================================================
+
+        const appContent = document.getElementById('app-content');
+
+        function render() {
+            switch (currentState.view) {
+                case 'login':
+                    renderLogin();
+                    break;
+                case 'dashboard':
+                    renderDashboard();
+                    break;
+                default:
+                    renderLogin();
+            }
+        }
+
+        // =================================================================================
+        // TELA DE LOGIN
+        // =================================================================================
+
+        function renderLogin() {
+            appContent.innerHTML = `
+                <div class="card fade-in" style="max-width: 400px; margin: 2rem auto;">
+                    <h2>🔐 Acesso ao Sistema</h2>
+                    <div class="form-group">
+                        <label for="usernameInput">👤 Usuário</label>
+                        <input type="text" id="usernameInput" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordInput">🔑 Senha</label>
+                        <input type="password" id="passwordInput" placeholder="Digite sua senha">
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="handleLogin()">Entrar</button>
+                    <p id="loginMessage" style="color: var(--danger-color); margin-top: 1rem; text-align: center;"></p>
+                    
+                    <div class="alert alert-info">
+                        <strong>👥 Usuários de Teste:</strong><br>
+                        • <strong>etson</strong> / 123 (Dirigente)<br>
+                        • <strong>portaria</strong> / 123 (Portaria)<br>
+                        • <strong>midia</strong> / 123 (Mídia)<br>
+                        • <strong>intercessao</strong> / 123 (Intercessão)
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('usernameInput').value.trim();
+            const password = document.getElementById('passwordInput').value;
+            const messageEl = document.getElementById('loginMessage');
+            messageEl.textContent = '';
+
+            if (!username || !password) {
+                messageEl.textContent = 'Por favor, preencha usuário e senha.';
+                return;
+            }
+
+            const db = getDB();
+            const user = db.users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                currentState.view = 'dashboard';
+                currentState.userRole = user.role;
+                currentState.userName = user.name;
+                render();
+            } else {
+                messageEl.textContent = 'Usuário ou senha incorretos.';
+            }
+        }
+
+        // =================================================================================
+        // DASHBOARD PRINCIPAL
+        // =================================================================================
+
+        let currentTab = 'portaria'; // 'portaria', 'dirigente', 'midia', 'intercessao', 'avisos', 'config'
+
+        function renderDashboard() {
+            appContent.innerHTML = `
+                <div class="card">
+                    <h2>👋 Bem-vindo, ${currentState.userName}!</h2>
+                    <p><strong>Perfil:</strong> ${currentState.userRole.toUpperCase()}</p>
+                    <button class="btn btn-danger" onclick="handleLogout()">🚪 Sair</button>
+                </div>
+
+                <div class="nav-tabs">
+                    ${renderTabLink('portaria', '🚪 Portaria')}
+                    ${renderTabLink('dirigente', '⛪ Dirigente')}
+                    ${renderTabLink('midia', '🎥 Mídia')}
+                    ${renderTabLink('intercessao', '🙏 Intercessão')}
+                    ${renderTabLink('avisos', '📢 Avisos')}
+                    ${renderTabLink('config', '⚙️ Config')}
+                </div>
+
+                <div id="tab-content"></div>
+            `;
+
+            renderTabContent();
+        }
+
+        function renderTabLink(tabName, tabTitle) {
+            const activeClass = currentTab === tabName ? 'active' : '';
+            return `<a href="#" class="nav-link ${activeClass}" onclick="changeTab('${tabName}', event)">${tabTitle}</a>`;
+        }
+
+        function changeTab(tabName, event) {
+            event.preventDefault();
+            currentTab = tabName;
+            renderTabContent();
+        }
+
+        function renderTabContent() {
+            const contentEl = document.getElementById('tab-content');
+            
+            switch (currentTab) {
+                case 'portaria':
+                    renderPortaria(contentEl);
+                    break;
+                case 'dirigente':
+                    renderDirigente(contentEl);
+                    break;
+                case 'midia':
+                    renderMidia(contentEl);
+                    break;
+                case 'intercessao':
+                    renderIntercessao(contentEl);
+                    break;
+                case 'avisos':
+                    renderAvisos(contentEl);
+                    break;
+                case 'config':
+                    renderConfig(contentEl);
+                    break;
+            }
+        }
+
+        // =================================================================================
+        // MÓDULO PORTARIA
+        // =================================================================================
+
+        function renderPortaria(el) {
+            if (!['portaria', 'dirigente'].includes(currentState.userRole)) {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso negado para este módulo.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const visitors = db.visitors;
+
+            let visitorListHtml = visitors.map((v, index) => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>👤 ${v.name}</strong><br>
+                        <small>📱 ${v.phone}</small><br>
+                        <small>🏷️ Tags: ${v.tags || 'Nenhuma'}</small><br>
+                        <small>🕐 ${new Date(v.timestamp).toLocaleString()}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-success" onclick="sendWhatsAppMessage('${v.phone}', 'Olá ${v.name}, que bom te ter conosco hoje na Assembleia de Deus de Vargeão! Que Deus te abençoe! 🙏')">💬 WhatsApp</button>
+                    </div>
+                </li>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>🚪 Cadastro de Visitantes</h3>
+                    <div class="form-group">
+                        <label for="visitorName">👤 Nome Completo</label>
+                        <input type="text" id="visitorName" placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="visitorPhone">📱 Telefone (com DDD)</label>
+                        <input type="text" id="visitorPhone" placeholder="Ex: 49999887766">
+                    </div>
+                    <div class="form-group">
+                        <label for="visitorTags">🏷️ Tags (separadas por vírgula)</label>
+                        <input type="text" id="visitorTags" placeholder="Ex: novo, jovem, família">
+                    </div>
+                    <button class="btn btn-success btn-full" onclick="handleVisitorRegistration()">➕ Cadastrar Visitante</button>
+                    <p id="visitorMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>📋 Visitantes de Hoje</h3>
+                    <ul class="list-group">${visitorListHtml || '<p>Nenhum visitante cadastrado hoje.</p>'}</ul>
+                </div>
+            `;
+        }
+
+        function handleVisitorRegistration() {
+            const name = document.getElementById('visitorName').value.trim();
+            const phone = document.getElementById('visitorPhone').value.trim();
+            const tags = document.getElementById('visitorTags').value.trim();
+            const messageEl = document.getElementById('visitorMessage');
+            messageEl.textContent = '';
+
+            if (!name || !phone) {
+                messageEl.textContent = 'Nome e telefone são obrigatórios.';
+                return;
+            }
+
+            const db = getDB();
+            const newVisitor = {
+                name: name,
+                phone: phone.replace(/\D/g, ''), // Remove caracteres não numéricos
+                tags: tags,
+                timestamp: new Date().toISOString()
+            };
+            
+            db.visitors.push(newVisitor);
+            saveDB(db);
+
+            // Notificar dirigentes
+            const dirigentes = db.contacts.filter(c => c.category === 'dirigente');
+            dirigentes.forEach(dirigente => {
+                const waMsg = `🆕 *Novo Visitante!*\n👤 Nome: ${name}\n📱 Telefone: ${phone}\n🏷️ Tags: ${tags || 'Nenhuma'}\n⛪ Assembleia de Deus Vargeão`;
+                console.log(`Notificando dirigente ${dirigente.name}: ${waMsg}`);
+            });
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Visitante cadastrado com sucesso!';
+            
+            // Limpar formulário
+            document.getElementById('visitorName').value = '';
+            document.getElementById('visitorPhone').value = '';
+            document.getElementById('visitorTags').value = '';
+            
+            renderTabContent();
+        }
+
+        // =================================================================================
+        // MÓDULO DIRIGENTE
+        // =================================================================================
+
+        function renderDirigente(el) {
+            if (currentState.userRole !== 'dirigente') {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso restrito ao dirigente.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const pendingPraises = db.praises.filter(p => p.status === 'pendente');
+            const approvedPraises = db.praises.filter(p => p.status === 'aprovado');
+
+            let pendingListHtml = pendingPraises.map(p => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>🎵 ${p.title}</strong><br>
+                        <small>👤 Solicitado por: ${p.requester}</small><br>
+                        <small>🎼 Tom: ${p.key || 'N/A'} | BPM: ${p.bpm || 'N/A'} | ⏱️ ${p.duration || 'N/A'} min</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-success" onclick="handlePraiseApproval('${p.id}', 'aprovado')">✅ Aprovar</button>
+                        <button class="btn btn-danger" onclick="handlePraiseApproval('${p.id}', 'rejeitado')">❌ Rejeitar</button>
+                    </div>
+                </li>
+            `).join('');
+
+            let approvedListHtml = approvedPraises.map(p => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>🎵 ${p.title}</strong><br>
+                        <small>👤 ${p.requester}</small><br>
+                        <small>🎼 Tom: ${p.key || 'N/A'} | BPM: ${p.bpm || 'N/A'} | ⏱️ ${p.duration || 'N/A'} min</small><br>
+                        <small style="color: var(--success-color);">✅ Aprovado em: ${new Date(p.approval_timestamp).toLocaleDateString()}</small>
+                    </div>
+                </li>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>🎵 Solicitar Louvor</h3>
+                    <div class="form-group">
+                        <label for="praiseTitle">🎵 Título do Louvor</label>
+                        <input type="text" id="praiseTitle" placeholder="Ex: Grande é o Senhor">
+                    </div>
+                    <div class="form-group">
+                        <label for="praiseRequester">👤 Solicitante</label>
+                        <input type="text" id="praiseRequester" placeholder="Ex: Equipe de Louvor" value="${currentState.userName}">
+                    </div>
+                    <div class="form-group">
+                        <label for="praiseKey">🎼 Tom</label>
+                        <input type="text" id="praiseKey" placeholder="Ex: C, Dm, G">
+                    </div>
+                    <div class="form-group">
+                        <label for="praiseBPM">🥁 BPM</label>
+                        <input type="number" id="praiseBPM" placeholder="Ex: 120">
+                    </div>
+                    <div class="form-group">
+                        <label for="praiseDuration">⏱️ Duração (minutos)</label>
+                        <input type="number" id="praiseDuration" placeholder="Ex: 4.5" step="0.5">
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="handlePraiseSubmission()">➕ Solicitar Louvor</button>
+                    <p id="praiseMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>⏳ Louvores Pendentes (${pendingPraises.length})</h3>
+                    <ul class="list-group">${pendingListHtml || '<p>Nenhum louvor pendente.</p>'}</ul>
+                </div>
+
+                <div class="card">
+                    <h3>✅ Louvores Aprovados (${approvedPraises.length})</h3>
+                    <ul class="list-group">${approvedListHtml || '<p>Nenhum louvor aprovado.</p>'}</ul>
+                </div>
+            `;
+        }
+
+        function handlePraiseSubmission() {
+            const title = document.getElementById('praiseTitle').value.trim();
+            const requester = document.getElementById('praiseRequester').value.trim();
+            const key = document.getElementById('praiseKey').value.trim();
+            const bpm = document.getElementById('praiseBPM').value.trim();
+            const duration = document.getElementById('praiseDuration').value.trim();
+            const messageEl = document.getElementById('praiseMessage');
+            messageEl.textContent = '';
+
+            if (!title || !requester) {
+                messageEl.textContent = 'Título e solicitante são obrigatórios.';
+                return;
+            }
+
+            const db = getDB();
+            const newPraise = {
+                id: Date.now(),
+                title: title,
+                requester: requester,
+                key: key,
+                bpm: bpm,
+                duration: duration,
+                status: 'pendente',
+                timestamp: new Date().toISOString()
+            };
+            
+            db.praises.push(newPraise);
+            saveDB(db);
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Louvor solicitado com sucesso!';
+            
+            // Limpar formulário
+            document.getElementById('praiseTitle').value = '';
+            document.getElementById('praiseKey').value = '';
+            document.getElementById('praiseBPM').value = '';
+            document.getElementById('praiseDuration').value = '';
+            
+            renderTabContent();
+        }
+
+        function handlePraiseApproval(praiseId, status) {
+            const db = getDB();
+            const praise = db.praises.find(p => p.id == praiseId);
+
+            if (praise) {
+                praise.status = status;
+                praise.approval_timestamp = new Date().toISOString();
+                saveDB(db);
+
+                if (status === 'aprovado') {
+                    // Notificar equipe de mídia
+                    const midiaContacts = db.contacts.filter(c => c.category === 'midia');
+                    const waMsg = `🎵 *Louvor Aprovado!*\n\n🎵 ${praise.title}\n🎼 Tom: ${praise.key || 'N/A'}\n🥁 BPM: ${praise.bpm || 'N/A'}\n⏱️ Duração: ${praise.duration || 'N/A'} min\n\n📺 Equipe de Mídia, preparem a projeção!`;
+                    
+                    midiaContacts.forEach(contact => {
+                        console.log(`Notificando mídia ${contact.name}: ${waMsg}`);
+                    });
+                    
+                    alert(`✅ Louvor "${praise.title}" aprovado e equipe de mídia notificada!`);
+                } else {
+                    alert(`❌ Louvor "${praise.title}" rejeitado.`);
+                }
+                
+                renderTabContent();
+            }
+        }
+
+        // =================================================================================
+        // MÓDULO MÍDIA
+        // =================================================================================
+
+        function renderMidia(el) {
+            if (!['midia', 'dirigente'].includes(currentState.userRole)) {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso negado para este módulo.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const approvedPraises = db.praises.filter(p => p.status === 'aprovado');
+
+            let approvedListHtml = approvedPraises.map(p => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>🎵 ${p.title}</strong><br>
+                        <small>👤 Solicitado por: ${p.requester}</small><br>
+                        <small>🎼 Tom: ${p.key || 'N/A'} | 🥁 BPM: ${p.bpm || 'N/A'} | ⏱️ ${p.duration || 'N/A'} min</small><br>
+                        <small style="color: var(--success-color);">✅ Aprovado em: ${new Date(p.approval_timestamp).toLocaleDateString()}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-warning" onclick="alert('✅ Louvor marcado como executado!')">🎬 Executado</button>
+                    </div>
+                </li>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>📺 Dashboard Mídia</h3>
+                    <p>Aqui estão os louvores aprovados pelo dirigente, prontos para projeção no culto.</p>
+                    <div class="alert alert-info">
+                        <strong>📋 Total de louvores aprovados:</strong> ${approvedPraises.length}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🎵 Louvores Aprovados para Projeção</h3>
+                    <ul class="list-group">${approvedListHtml || '<p>Nenhum louvor aprovado para projeção.</p>'}</ul>
+                </div>
+            `;
+        }
+
+        // =================================================================================
+        // MÓDULO INTERCESSÃO
+        // =================================================================================
+
+        function renderIntercessao(el) {
+            if (!['intercessao', 'dirigente'].includes(currentState.userRole)) {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso negado para este módulo.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const prayers = db.prayers;
+
+            let prayerListHtml = prayers.map((p, index) => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>👤 ${p.name || 'Anônimo'}</strong><br>
+                        <small>📱 ${p.phone || 'Não informado'}</small><br>
+                        <small>🔒 ${p.privacy === 'private' ? 'Restrito à Intercessão' : 'Pode ser compartilhado'}</small><br>
+                        <div style="margin-top: 0.5rem; padding: 1rem; background-color: #f8f9fa; border-radius: 0.5rem; border-left: 4px solid var(--primary-color);">
+                            <strong>🙏 Pedido:</strong> ${p.request}
+                        </div>
+                        <small>🕐 ${new Date(p.timestamp).toLocaleString()}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-success" onclick="handlePrayerMarked('${p.id}')">✅ Orado</button>
+                    </div>
+                </li>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>🙏 Novo Pedido de Oração</h3>
+                    <div class="form-group">
+                        <label for="prayerName">👤 Seu Nome (Opcional)</label>
+                        <input type="text" id="prayerName" placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="prayerPhone">📱 Seu Telefone (Opcional)</label>
+                        <input type="text" id="prayerPhone" placeholder="Ex: 49999887766">
+                    </div>
+                    <div class="form-group">
+                        <label for="prayerRequest">🙏 Pedido de Oração</label>
+                        <textarea id="prayerRequest" rows="4" placeholder="Descreva seu pedido de oração..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="prayerPrivacy">🔒 Privacidade</label>
+                        <select id="prayerPrivacy">
+                            <option value="private">🔒 Restrito à Equipe de Intercessão</option>
+                            <option value="public">👥 Pode ser compartilhado com a liderança</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="handlePrayerSubmission()">➕ Enviar Pedido</button>
+                    <p id="prayerMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>📋 Pedidos Recebidos (${prayers.length})</h3>
+                    <ul class="list-group">${prayerListHtml || '<p>Nenhum pedido de oração pendente.</p>'}</ul>
+                </div>
+            `;
+        }
+
+        function handlePrayerSubmission() {
+            const name = document.getElementById('prayerName').value.trim();
+            const phone = document.getElementById('prayerPhone').value.trim();
+            const request = document.getElementById('prayerRequest').value.trim();
+            const privacy = document.getElementById('prayerPrivacy').value;
+            const messageEl = document.getElementById('prayerMessage');
+            messageEl.textContent = '';
+
+            if (!request) {
+                messageEl.textContent = 'O pedido de oração é obrigatório.';
+                return;
+            }
+
+            const db = getDB();
+            const newPrayer = {
+                id: Date.now(),
+                name: name,
+                phone: phone.replace(/\D/g, ''),
+                request: request,
+                privacy: privacy,
+                timestamp: new Date().toISOString()
+            };
+            
+            db.prayers.push(newPrayer);
+            saveDB(db);
+
+            // Notificar equipe de intercessão
+            const intercessaoContacts = db.contacts.filter(c => c.category === 'intercessao');
+            intercessaoContacts.forEach(contact => {
+                const waMsg = `🙏 *Novo Pedido de Oração*\n\n👤 ${name || 'Anônimo'}\n📱 ${phone || 'Não informado'}\n🔒 ${privacy === 'private' ? 'Restrito' : 'Compartilhável'}\n\n🙏 ${request}`;
+                console.log(`Notificando intercessão ${contact.name}: ${waMsg}`);
+            });
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Pedido enviado! A equipe de intercessão foi notificada.';
+            
+            // Limpar formulário
+            document.getElementById('prayerName').value = '';
+            document.getElementById('prayerPhone').value = '';
+            document.getElementById('prayerRequest').value = '';
+            
+            renderTabContent();
+        }
+
+        function handlePrayerMarked(prayerId) {
+            const db = getDB();
+            const index = db.prayers.findIndex(p => p.id == prayerId);
+
+            if (index !== -1) {
+                const prayer = db.prayers.splice(index, 1)[0];
+                saveDB(db);
+                alert(`✅ Pedido de oração de ${prayer.name || 'Anônimo'} marcado como orado.`);
+                renderTabContent();
+            }
+        }
+
+        // =================================================================================
+        // MÓDULO AVISOS
+        // =================================================================================
+
+        function renderAvisos(el) {
+            if (!['dirigente', 'portaria'].includes(currentState.userRole)) {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso negado para este módulo.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const avisos = db.avisos || [];
+            const avisosFixos = avisos.filter(a => a.tipo === 'fixo');
+            const avisosNormais = avisos.filter(a => a.tipo === 'normal');
+
+            let avisosFixosHtml = avisosFixos.map((aviso, index) => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>📌 ${aviso.titulo}</strong><br>
+                        <small>${aviso.descricao}</small><br>
+                        <small style="color: var(--success-color);">🔄 Fixo - ${aviso.dias_semana ? aviso.dias_semana.join(', ') : ''} ${aviso.horario ? `às ${aviso.horario}` : ''}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-secondary" onclick="handleEditAviso(${avisos.indexOf(aviso)})">✏️ Editar</button>
+                        <button class="btn btn-danger" onclick="handleDeleteAviso(${avisos.indexOf(aviso)})">🗑️ Excluir</button>
+                    </div>
+                </li>
+            `).join('');
+
+            let avisosNormaisHtml = avisosNormais.map((aviso, index) => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>📢 ${aviso.titulo}</strong><br>
+                        <small>${aviso.descricao}</small><br>
+                        <small style="color: var(--secondary-color);">📅 ${new Date(aviso.timestamp).toLocaleDateString()}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-secondary" onclick="handleEditAviso(${avisos.indexOf(aviso)})">✏️ Editar</button>
+                        <button class="btn btn-danger" onclick="handleDeleteAviso(${avisos.indexOf(aviso)})">🗑️ Excluir</button>
+                    </div>
+                </li>
+            `).join('');
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>📢 Novo Aviso</h3>
+                    <div class="form-group">
+                        <label for="avisoTipo">📋 Tipo de Aviso</label>
+                        <select id="avisoTipo" onchange="toggleAvisoFields()">
+                            <option value="normal">📢 Aviso Normal</option>
+                            <option value="fixo">🔄 Aviso Fixo (Recorrente)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="avisoTitulo">📝 Título</label>
+                        <input type="text" id="avisoTitulo" placeholder="Ex: Culto de Quarta-feira">
+                    </div>
+                    <div class="form-group">
+                        <label for="avisoDescricao">📄 Descrição</label>
+                        <textarea id="avisoDescricao" rows="3" placeholder="Ex: Todas as quartas-feiras às 19:30h"></textarea>
+                    </div>
+                    
+                    <div id="avisoFixoFields" style="display: none;">
+                        <div class="form-group">
+                            <label>📅 Dias da Semana</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="domingo" id="dom">
+                                    <label for="dom">Domingo</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="segunda" id="seg">
+                                    <label for="seg">Segunda</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="terca" id="ter">
+                                    <label for="ter">Terça</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="quarta" id="qua">
+                                    <label for="qua">Quarta</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="quinta" id="qui">
+                                    <label for="qui">Quinta</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="sexta" id="sex">
+                                    <label for="sex">Sexta</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" name="diasSemana" value="sabado" id="sab">
+                                    <label for="sab">Sábado</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="avisoHorario">🕐 Horário</label>
+                            <input type="text" id="avisoHorario" placeholder="Ex: 19:30h">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success btn-full" onclick="handleAddAviso()">➕ Adicionar Aviso</button>
+                    <p id="avisoMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>🔄 Avisos Fixos (${avisosFixos.length})</h3>
+                    <ul class="list-group">${avisosFixosHtml || '<p>Nenhum aviso fixo cadastrado.</p>'}</ul>
+                </div>
+
+                <div class="card">
+                    <h3>📢 Avisos Normais (${avisosNormais.length})</h3>
+                    <ul class="list-group">${avisosNormaisHtml || '<p>Nenhum aviso normal cadastrado.</p>'}</ul>
+                </div>
+            `;
+        }
+
+        function toggleAvisoFields() {
+            const tipo = document.getElementById('avisoTipo').value;
+            const avisoFixoFields = document.getElementById('avisoFixoFields');
+            
+            if (tipo === 'fixo') {
+                avisoFixoFields.style.display = 'block';
+            } else {
+                avisoFixoFields.style.display = 'none';
+            }
+        }
+
+        function handleAddAviso() {
+            const tipo = document.getElementById('avisoTipo').value;
+            const titulo = document.getElementById('avisoTitulo').value.trim();
+            const descricao = document.getElementById('avisoDescricao').value.trim();
+            const messageEl = document.getElementById('avisoMessage');
+            messageEl.textContent = '';
+
+            if (!titulo || !descricao) {
+                messageEl.textContent = 'Título e descrição são obrigatórios.';
+                return;
+            }
+
+            const db = getDB();
+            if (!db.avisos) {
+                db.avisos = [];
+            }
+
+            const novoAviso = {
+                id: Date.now(),
+                tipo: tipo,
+                titulo: titulo,
+                descricao: descricao,
+                timestamp: new Date().toISOString()
+            };
+
+            if (tipo === 'fixo') {
+                const checkboxes = document.querySelectorAll('input[name="diasSemana"]:checked');
+                const diasSemana = Array.from(checkboxes).map(cb => cb.value);
+                const horario = document.getElementById('avisoHorario').value.trim();
+                
+                if (diasSemana.length === 0) {
+                    messageEl.textContent = 'Selecione pelo menos um dia da semana para avisos fixos.';
+                    return;
+                }
+                
+                if (!horario) {
+                    messageEl.textContent = 'Horário é obrigatório para avisos fixos.';
+                    return;
+                }
+                
+                novoAviso.dias_semana = diasSemana;
+                novoAviso.horario = horario;
+            }
+
+            db.avisos.push(novoAviso);
+            saveDB(db);
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Aviso adicionado com sucesso!';
+            
+            // Limpar formulário
+            document.getElementById('avisoTitulo').value = '';
+            document.getElementById('avisoDescricao').value = '';
+            document.getElementById('avisoHorario').value = '';
+            document.querySelectorAll('input[name="diasSemana"]').forEach(cb => cb.checked = false);
+            
+            renderTabContent();
+        }
+
+        function handleEditAviso(index) {
+            const db = getDB();
+            const aviso = db.avisos[index];
+            
+            document.getElementById('avisoTipo').value = aviso.tipo;
+            document.getElementById('avisoTitulo').value = aviso.titulo;
+            document.getElementById('avisoDescricao').value = aviso.descricao;
+            
+            toggleAvisoFields();
+            
+            if (aviso.tipo === 'fixo') {
+                document.querySelectorAll('input[name="diasSemana"]').forEach(cb => {
+                    cb.checked = aviso.dias_semana.includes(cb.value);
+                });
+                document.getElementById('avisoHorario').value = aviso.horario;
+            }
+            
+            db.avisos.splice(index, 1);
+            saveDB(db);
+            
+            document.getElementById('avisoMessage').textContent = '✏️ Aviso carregado para edição. Faça as alterações e clique em "Adicionar Aviso".';
+            document.getElementById('avisoMessage').style.color = 'var(--warning-color)';
+        }
+
+        function handleDeleteAviso(index) {
+            if (confirm('🗑️ Tem certeza que deseja excluir este aviso?')) {
+                const db = getDB();
+                db.avisos.splice(index, 1);
+                saveDB(db);
+                renderTabContent();
+            }
+        }
+
+        // =================================================================================
+        // MÓDULO CONFIGURAÇÕES
+        // =================================================================================
+
+        function renderConfig(el) {
+            if (currentState.userRole !== 'dirigente') {
+                el.innerHTML = '<div class="alert alert-danger">❌ Acesso restrito ao dirigente.</div>';
+                return;
+            }
+
+            const db = getDB();
+            const contacts = db.contacts;
+            const autoMessages = db.auto_messages;
+
+            let contactListHtml = contacts.map((c, index) => `
+                <li class="list-group-item">
+                    <div class="list-item-content">
+                        <strong>👤 ${c.name}</strong><br>
+                        <small>📱 ${c.phone}</small><br>
+                        <small>🏷️ ${c.category.toUpperCase()}</small>
+                    </div>
+                    <div class="list-item-actions">
+                        <button class="btn btn-danger" onclick="handleDeleteContact(${index})">🗑️ Excluir</button>
+                    </div>
+                </li>
+            `).join('');
+
+            const postServiceTemplate = autoMessages.post_service ? autoMessages.post_service.template : '';
+            const postServiceTags = autoMessages.post_service ? autoMessages.post_service.tags : '';
+            const followUp1Template = autoMessages.follow_up_1 ? autoMessages.follow_up_1.template : '';
+            const followUp1Tags = autoMessages.follow_up_1 ? autoMessages.follow_up_1.tags : '';
+
+            el.innerHTML = `
+                <div class="card">
+                    <h3>👥 Adicionar Contato</h3>
+                    <div class="form-group">
+                        <label for="contactName">👤 Nome</label>
+                        <input type="text" id="contactName" placeholder="Ex: Pastor João">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">📱 Telefone</label>
+                        <input type="text" id="contactPhone" placeholder="Ex: 49999887766">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactCategory">🏷️ Categoria</label>
+                        <select id="contactCategory">
+                            <option value="dirigente">⛪ Dirigente</option>
+                            <option value="midia">🎥 Mídia</option>
+                            <option value="intercessao">🙏 Intercessão</option>
+                            <option value="outro">📋 Outro</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="handleAddContact()">➕ Adicionar Contato</button>
+                    <p id="contactMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>📞 Contatos Cadastrados (${contacts.length})</h3>
+                    <ul class="list-group">${contactListHtml || '<p>Nenhum contato cadastrado.</p>'}</ul>
+                </div>
+
+                <div class="card">
+                    <h3>💬 Mensagens Automáticas</h3>
+                    <p><small>💡 Use <strong>[NOME]</strong> como placeholder para o nome do visitante.</small></p>
+
+                    <h4>📱 Mensagem Pós-Culto</h4>
+                    <div class="form-group">
+                        <label for="postServiceTemplate">💬 Template da Mensagem</label>
+                        <textarea id="postServiceTemplate" rows="3">${postServiceTemplate}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postServiceTags">🏷️ Tags (separadas por vírgula)</label>
+                        <input type="text" id="postServiceTags" value="${postServiceTags}" placeholder="Ex: visitante, novo">
+                    </div>
+
+                    <h4>📞 Follow-up</h4>
+                    <div class="form-group">
+                        <label for="followUp1Template">💬 Template da Mensagem</label>
+                        <textarea id="followUp1Template" rows="3">${followUp1Template}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="followUp1Tags">🏷️ Tags (separadas por vírgula)</label>
+                        <input type="text" id="followUp1Tags" value="${followUp1Tags}" placeholder="Ex: visitante, novo">
+                    </div>
+
+                    <button class="btn btn-success btn-full" onclick="handleSaveAutoMessages()">💾 Salvar Mensagens</button>
+                    <p id="autoMsgMessage" style="color: var(--danger-color); margin-top: 1rem;"></p>
+                </div>
+
+                <div class="card">
+                    <h3>🗄️ Gerenciar Dados</h3>
+                    <div class="alert alert-info">
+                        <strong>💾 Backup dos Dados:</strong> Os dados são salvos localmente no dispositivo.
+                    </div>
+                    <button class="btn btn-warning btn-full" onclick="handleExportData()">📤 Exportar Dados</button>
+                    <button class="btn btn-danger btn-full" onclick="handleClearData()">🗑️ Limpar Todos os Dados</button>
+                </div>
+            `;
+        }
+
+        function handleAddContact() {
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const category = document.getElementById('contactCategory').value;
+            const messageEl = document.getElementById('contactMessage');
+            messageEl.textContent = '';
+
+            if (!name || !phone) {
+                messageEl.textContent = 'Nome e telefone são obrigatórios.';
+                return;
+            }
+
+            const db = getDB();
+            db.contacts.push({ 
+                name, 
+                phone: phone.replace(/\D/g, ''), 
+                category 
+            });
+            saveDB(db);
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Contato adicionado com sucesso!';
+            
+            document.getElementById('contactName').value = '';
+            document.getElementById('contactPhone').value = '';
+            renderTabContent();
+        }
+
+        function handleDeleteContact(index) {
+            if (confirm('🗑️ Tem certeza que deseja excluir este contato?')) {
+                const db = getDB();
+                db.contacts.splice(index, 1);
+                saveDB(db);
+                renderTabContent();
+            }
+        }
+
+        function handleSaveAutoMessages() {
+            const postServiceTemplate = document.getElementById('postServiceTemplate').value.trim();
+            const postServiceTags = document.getElementById('postServiceTags').value.trim();
+            const followUp1Template = document.getElementById('followUp1Template').value.trim();
+            const followUp1Tags = document.getElementById('followUp1Tags').value.trim();
+            const messageEl = document.getElementById('autoMsgMessage');
+
+            const db = getDB();
+            db.auto_messages = {
+                post_service: { template: postServiceTemplate, tags: postServiceTags },
+                follow_up_1: { template: followUp1Template, tags: followUp1Tags }
+            };
+            saveDB(db);
+
+            messageEl.style.color = 'var(--success-color)';
+            messageEl.textContent = '✅ Mensagens automáticas salvas com sucesso!';
+        }
+
+        function handleExportData() {
+            const db = getDB();
+            const dataStr = JSON.stringify(db, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `ecclesiaflow-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            alert('📤 Dados exportados com sucesso!');
+        }
+
+        function handleClearData() {
+            if (confirm('🚨 ATENÇÃO! Isso irá apagar TODOS os dados do sistema. Tem certeza?')) {
+                if (confirm('🚨 ÚLTIMA CONFIRMAÇÃO! Todos os visitantes, louvores, orações e avisos serão perdidos. Continuar?')) {
+                    localStorage.removeItem(DB_KEY);
+                    alert('🗑️ Todos os dados foram limpos. O sistema será reiniciado.');
+                    location.reload();
+                }
+            }
+        }
+
+        // =================================================================================
+        // FUNÇÕES GERAIS
+        // =================================================================================
+
+        function handleLogout() {
+            currentState.view = 'login';
+            currentState.userRole = null;
+            currentState.userName = null;
+            currentTab = 'portaria';
+            render();
+        }
+
+        function sendWhatsAppMessage(phone, message) {
+            const cleanPhone = phone.replace(/\D/g, '');
+            const fullPhone = cleanPhone.startsWith('55') ? cleanPhone : '55' + cleanPhone;
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://web.whatsapp.com/send?phone=${fullPhone}&text=${encodedMessage}`;
+            
+            window.open(url, '_blank');
+            console.log(`Abrindo WhatsApp para ${fullPhone}: ${message}`);
+        }
+
+        // Inicialização
+        window.onload = function() {
+            initializeDB();
+            render();
+        };
+
+        // Adicionar suporte a PWA (Progressive Web App)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Registrar service worker aqui se necessário
+            });
+        }
+
+    </script>
+
+</body>
+</html>
